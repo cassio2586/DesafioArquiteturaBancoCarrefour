@@ -1,0 +1,12 @@
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/bin/Debug/net7.0/Clean.Architecture.SharedKernel.deps.json
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/bin/Debug/net7.0/Clean.Architecture.SharedKernel.dll
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/bin/Debug/net7.0/Clean.Architecture.SharedKernel.pdb
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.csproj.AssemblyReference.cache
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.AssemblyInfoInputs.cache
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.AssemblyInfo.cs
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.csproj.CoreCompileInputs.cache
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.dll
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/refint/Clean.Architecture.SharedKernel.dll
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/Clean.Architecture.SharedKernel.pdb
+/home/cassio/RiderProjects/CleanArchitecture/src/Clean.Architecture.SharedKernel/obj/Debug/net7.0/ref/Clean.Architecture.SharedKernel.dll
