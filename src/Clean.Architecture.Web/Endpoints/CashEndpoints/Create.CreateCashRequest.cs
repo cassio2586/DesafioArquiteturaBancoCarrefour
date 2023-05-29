@@ -11,8 +11,8 @@ public class CreateCashRequest
   public string? Description { get; set; }
   
   [Required]
-  public decimal? Amount { get; set; }
+  public decimal Amount { get; set; }
   
   [Required]
-  public TransactionTypeEnum? TransactionType { get; set; }
+  public TransactionTypeEnum TransactionType { get; set; }
 }

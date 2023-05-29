@@ -13,5 +13,9 @@ public class DefaultCoreModule : Module
 
     builder.RegisterType<DeleteContributorService>()
         .As<IDeleteContributorService>().InstancePerLifetimeScope();
+    
+    builder.RegisterType<CreateCashService>()
+        .As<ICreateCashService>().InstancePerLifetimeScope();
+    
   }
 }

@@ -1,19 +1,16 @@
-﻿using Clean.Architecture.Core.CashAggregate;
-using Clean.Architecture.Core.ContributorAggregate;
-using Clean.Architecture.SharedKernel.Interfaces;
+﻿using Ardalis.Result;
+using Clean.Architecture.Core.Interfaces;
 using Clean.Architecture.Web.Endpoints.CashEndpoints;
-using Clean.Architecture.Web.Endpoints.ContributorEndpoints;
 using FastEndpoints;
 
 namespace Clean.Architecture.Web.CashEndpoints;
 
 public class Create : Endpoint<CreateCashRequest, CreateCashResponse>
 {
-  private readonly IRepository<Cash> _repository;
-
-  public Create(IRepository<Cash> repository)
+  private readonly ICreateCashService _createCashService;
+  public Create(ICreateCashService service)
   {
-    _repository = repository;
+    _createCashService = service;
   }
 
   public override void Configure()
@@ -31,26 +28,15 @@ public class Create : Endpoint<CreateCashRequest, CreateCashResponse>
     {
       ThrowError("Description is required");
     }
-    if (request.Amount == null)
-    {
-      ThrowError("Amount is required");
-    }
     
-    if (request.TransactionType is null)
+    var result = await _createCashService.Add(request.Description, request.Amount, request.TransactionType);
+
+    if (result.Status == ResultStatus.NotFound)
     {
-      ThrowError("TransactionType is required");
+      await SendNotFoundAsync(cancellationToken);
+      return;
     }
-    
 
-    var newCash = new Cash(request.Description, request.Amount??0,request.TransactionType??0);
-    var createdItem = await _repository.AddAsync(newCash, cancellationToken);
-    var response = new CreateCashResponse
-    (
-      description: createdItem.Description,
-      amount: createdItem.Amount,
-      transactionType:createdItem.TransactionType
-    );
-
-    await SendAsync(response, cancellation: cancellationToken);
+    await SendNoContentAsync(cancellationToken);
   }
 }
