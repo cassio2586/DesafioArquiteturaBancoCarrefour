@@ -10,6 +10,8 @@ public class Cash : EntityBase, IAggregateRoot
   public string Description { get; private set; }
   public decimal Amount { get; private set; }
   public TransactionTypeEnum TransactionType { get; private set; }
+  
+  public DateTime DateTimeTransaction { get; set; }
 
   public Cash(string description, decimal amount, TransactionTypeEnum transactionType)
   {
@@ -17,9 +19,9 @@ public class Cash : EntityBase, IAggregateRoot
     Amount = Guard.Against.NegativeOrZero(amount, nameof(amount));
     TransactionType = transactionType;
   }
- /*
-  public void UpdateName(string newName)
+ 
+  public void AddCashTransaction(DateTime dateTimeTransaction)
   {
-    Name = Guard.Against.NullOrEmpty(newName, nameof(newName));
-  }*/
+    DateTimeTransaction = Guard.Against.OutOfSQLDateRange(dateTimeTransaction, nameof(dateTimeTransaction));
+  }
 }
