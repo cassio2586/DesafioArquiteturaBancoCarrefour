@@ -15,4 +15,7 @@ public class CreateCashRequest
   
   [Required]
   public TransactionTypeEnum TransactionType { get; set; }
+  
+  [Required]
+  public DateTime DateTimeTransaction { get; set; }
 }

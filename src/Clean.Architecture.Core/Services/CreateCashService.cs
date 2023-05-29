@@ -19,9 +19,11 @@ public class CreateCashService : ICreateCashService
     _mediator = mediator;
   }
   
-  public async Task<Result> Add(string description, decimal amount, TransactionTypeEnum transactionType)
+
+
+  public async Task<Result> Add(string description, decimal amount, TransactionTypeEnum transactionType, DateTime dateTimeTransaction)
   {
-    var cashAggregate = new Cash(description, amount, transactionType);
+    var cashAggregate = new Cash(description, amount, transactionType, dateTimeTransaction);
     
     var cashAdded = await _repository.AddAsync(cashAggregate);
     var domainEvent = new CashAddEvent(cashAdded.Id);

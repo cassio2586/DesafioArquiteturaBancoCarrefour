@@ -5,7 +5,7 @@ using FastEndpoints;
 
 namespace Clean.Architecture.Web.CashEndpoints;
 
-public class Create : Endpoint<CreateCashRequest, CreateCashResponse>
+public class Create : Endpoint<CreateCashRequest>
 {
   private readonly ICreateCashService _createCashService;
   public Create(ICreateCashService service)
@@ -29,7 +29,7 @@ public class Create : Endpoint<CreateCashRequest, CreateCashResponse>
       ThrowError("Description is required");
     }
     
-    var result = await _createCashService.Add(request.Description, request.Amount, request.TransactionType);
+    var result = await _createCashService.Add(request.Description, request.Amount, request.TransactionType, request.DateTimeTransaction);
 
     if (result.Status == ResultStatus.NotFound)
     {

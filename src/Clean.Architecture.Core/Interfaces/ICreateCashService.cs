@@ -5,5 +5,5 @@ namespace Clean.Architecture.Core.Interfaces;
 
 public interface ICreateCashService
 {
-  public Task<Result> Add(string description, decimal amount, TransactionTypeEnum transactionTyoe);
+  public Task<Result> Add(string description, decimal amount, TransactionTypeEnum transactionType, DateTime dateTimeTransaction);
 }
