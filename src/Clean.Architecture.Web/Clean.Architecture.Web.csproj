@@ -31,4 +31,13 @@
     <ProjectReference Include="..\Clean.Architecture.Infrastructure\Clean.Architecture.Infrastructure.csproj" />
   </ItemGroup>
   
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\ProjectDetails\Incomplete.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\ProjectDetails\Index.cshtml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="ApiModels\" />
+  </ItemGroup>
+  
 </Project>

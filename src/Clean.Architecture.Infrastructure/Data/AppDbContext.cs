@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using Clean.Architecture.Core.CashAggregate;
-using Clean.Architecture.Core.ContributorAggregate;
-using Clean.Architecture.Core.ProjectAggregate;
 using Clean.Architecture.SharedKernel;
 using Clean.Architecture.SharedKernel.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,10 +16,7 @@ public class AppDbContext : DbContext
   {
     _dispatcher = dispatcher;
   }
-
-  public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
-  public DbSet<Project> Projects => Set<Project>();
-  public DbSet<Contributor> Contributors => Set<Contributor>();
+  
   public DbSet<Cash> CashFlow => Set<Cash>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
