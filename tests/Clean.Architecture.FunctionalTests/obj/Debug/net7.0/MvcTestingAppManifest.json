@@ -1,7 +1,0 @@
-{
-  "Clean.Architecture.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/cassio\/RiderProjects\/CleanArchitecture\/src\/Clean.Architecture.Core",
-  "Clean.Architecture.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/cassio\/RiderProjects\/CleanArchitecture\/src\/Clean.Architecture.Infrastructure",
-  "Clean.Architecture.SharedKernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/cassio\/RiderProjects\/CleanArchitecture\/src\/Clean.Architecture.SharedKernel",
-  "Clean.Architecture.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/cassio\/RiderProjects\/CleanArchitecture\/tests\/Clean.Architecture.UnitTests",
-  "Clean.Architecture.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/cassio\/RiderProjects\/CleanArchitecture\/src\/Clean.Architecture.Web"
-}
