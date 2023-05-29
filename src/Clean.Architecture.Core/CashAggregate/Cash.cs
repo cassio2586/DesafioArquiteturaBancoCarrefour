@@ -11,7 +11,6 @@ public class Cash : EntityBase, IAggregateRoot
   public decimal Amount { get; private set; }
   public TransactionTypeEnum TransactionType { get; private set; }
   public DateTime DateTimeTransaction { get; set; }
-
   public Cash(string description, decimal amount, TransactionTypeEnum transactionType, DateTime dateTimeTransaction)
   {
     Description = Guard.Against.NullOrEmpty(description, nameof(description));

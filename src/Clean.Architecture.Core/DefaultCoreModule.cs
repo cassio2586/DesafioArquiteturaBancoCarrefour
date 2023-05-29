@@ -10,6 +10,9 @@ public class DefaultCoreModule : Module
   {
       builder.RegisterType<CreateCashService>()
         .As<ICreateCashService>().InstancePerLifetimeScope();
+      
+      builder.RegisterType<GetCashFlowDayReportServiceService>()
+          .As<IGetCashFlowDayReportService>().InstancePerLifetimeScope();
     
   }
 }
