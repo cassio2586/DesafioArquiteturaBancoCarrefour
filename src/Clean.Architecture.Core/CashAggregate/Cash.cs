@@ -8,7 +8,7 @@ namespace Clean.Architecture.Core.CashAggregate;
 public class Cash : EntityBase, IAggregateRoot
 {
   public string Description { get; private set; }
-  public decimal Amount { get; private set; }
+  public decimal Amount { get; set; }
   public TransactionTypeEnum TransactionType { get; private set; }
   public DateTime DateTimeTransaction { get; set; }
   public Cash(string description, decimal amount, TransactionTypeEnum transactionType, DateTime dateTimeTransaction)

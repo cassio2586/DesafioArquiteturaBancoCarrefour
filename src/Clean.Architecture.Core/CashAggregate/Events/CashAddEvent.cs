@@ -1,5 +1,4 @@
-﻿using Clean.Architecture.Core.CashAggregate.Enums;
-using Clean.Architecture.SharedKernel;
+﻿using Clean.Architecture.SharedKernel;
 
 namespace Clean.Architecture.Core.CashAggregate.Events;
 

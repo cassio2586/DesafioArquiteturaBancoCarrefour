@@ -4,5 +4,5 @@ namespace Clean.Architecture.Core.Interfaces;
 
 public interface IGetCashFlowDayReportService
 {
-  Task<Result<CashFlowDayReport>> Get(DateTime day);
+  Task<Result<CashFlowDayReport>> Get(DateTime date);
 }

@@ -20,7 +20,7 @@ public class DefaultInfrastructureModule : Module
   {
     _isDevelopment = isDevelopment;
     var coreAssembly =
-      Assembly.GetAssembly(typeof(Cash)); // TODO: Replace "Project" with any type from your Core project
+      Assembly.GetAssembly(typeof(Cash));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(StartupSetup));
     if (coreAssembly != null)
     {
@@ -68,14 +68,7 @@ public class DefaultInfrastructureModule : Module
       .RegisterType<DomainEventDispatcher>()
       .As<IDomainEventDispatcher>()
       .InstancePerLifetimeScope();
-
-    //builder.Register<ServiceFactory>(context =>
-    //{
-    //  var c = context.Resolve<IComponentContext>();
-
-    //  return t => c.Resolve(t);
-    //});
-
+    
     var mediatrOpenTypes = new[]
     {
       typeof(IRequestHandler<,>), 
@@ -95,14 +88,12 @@ public class DefaultInfrastructureModule : Module
 
   private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
   {
-    // NOTE: Add any development only services here
     builder.RegisterType<FakeEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
   }
 
   private void RegisterProductionOnlyDependencies(ContainerBuilder builder)
   {
-    // NOTE: Add any production only services here
     builder.RegisterType<SmtpEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
   }

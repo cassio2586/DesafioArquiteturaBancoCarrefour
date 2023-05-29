@@ -1,8 +1,5 @@
 ﻿namespace Clean.Architecture.SharedKernel;
 
-/// <summary>
-/// See: https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
-/// </summary>
 [Serializable]
 public abstract class ValueObject : IComparable, IComparable<ValueObject>
 {

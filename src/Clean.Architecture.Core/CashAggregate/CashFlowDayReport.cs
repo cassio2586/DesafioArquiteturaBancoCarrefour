@@ -13,7 +13,6 @@ public class CashFlowDayReport : ValueObject, IAggregateRoot
     Day = day;
     Amount = amount;
   }
-
   protected override IEnumerable<object> GetEqualityComponents()
   {
     throw new NotImplementedException();

@@ -1,0 +1,6 @@
+namespace Clean.Architecture.SharedKernel.CustomExceptions;
+
+public class NegativeAmountException : Exception
+{
+    
+}
