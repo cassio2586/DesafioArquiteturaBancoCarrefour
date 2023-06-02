@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CashFlow.Architecture.Core\CashFlow.Architecture.Core.csproj" />
     <ProjectReference Include="..\..\src\Clean.Architecture.Core\Clean.Architecture.Core.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,8 @@
-﻿using Clean.Architecture.Core.ContributorAggregate;
+﻿using CashFlow.Architecture.Core.CashAggregate;
+using CashFlow.Architecture.Core.Services;
+using CashFlow.Architecture.SharedKernel.Interfaces;
+using Castle.Core.Logging;
+using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.Services;
 using Clean.Architecture.SharedKernel.Interfaces;
 using MediatR;
@@ -9,13 +13,14 @@ namespace Clean.Architecture.UnitTests.Core.Services
 {
     public class DeleteContributorService_DeleteContributor
     {
-        private readonly Mock<IRepository<Contributor>> _mockRepo = new Mock<IRepository<Contributor>>();
+        private readonly Mock<IRepository<Cash>> _mockRepo = new Mock<IRepository<Cash>>();
         private readonly Mock<IMediator> _mockMediator = new Mock<IMediator>();
-        private readonly DeleteContributorService _service;
+        private readonly Mock<ILogger> _mockIlogger = new Mock<ILogger>();
+        private readonly CreateCashService _service;
 
         public DeleteContributorService_DeleteContributor()
         {
-            _service = new DeleteContributorService(_mockRepo.Object, _mockMediator.Object);
+            _service = new CreateCashService(_mockRepo.Object, _mockMediator.Object,_mockIlogger);
         }
 
         [Fact]
