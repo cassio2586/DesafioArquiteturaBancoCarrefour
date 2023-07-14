@@ -32,6 +32,7 @@ O objetivo deste repositório é demonstrar minha habilidades técnicas e arquit
 
 ![teste drawio](https://github.com/cassio2586/ArquiteturaReferenciaC-/assets/27103177/6cb5c765-8479-42c2-b071-162ab90f01a5)
 
+# Porque utilizei Microserviços
 Microserviços oferecem escalabilidade, flexibilidade, agilidade no desenvolvimento, facilidade de manutenção e evolução, resiliência, escalabilidade seletiva, integração e interoperabilidade, além de facilitar a adoção de novas tecnologias. 
 
 # Design e arquitetura dos microserviços
