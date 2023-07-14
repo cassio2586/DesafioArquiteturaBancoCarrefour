@@ -72,9 +72,9 @@ Os eventos de domínio são um ótimo padrão para desacoplar um gatilho para um
 
 # Observabilidade - Escolha do Prometheus
     1 - Coleta de métricas: O Prometheus é projetado para coletar métricas de diferentes componentes de um sistema. Ele oferece suporte a várias bibliotecas e protocolos de exportação, permitindo que você instrumente seu código para expor métricas relevantes. Isso permite que você monitore o desempenho e o comportamento do sistema em tempo real.
-
+    
     2 - Consultas e alertas flexíveis: O Prometheus fornece uma linguagem de consulta flexível chamada PromQL, que permite que você faça consultas poderosas sobre os dados coletados. Você pode criar consultas para calcular estatísticas, criar gráficos e detectar anomalias. Além disso, o Prometheus possui recursos integrados de alerta, permitindo que você defina regras personalizadas para acionar alertas com base nas métricas coletadas.
-
+    
     3 - Armazenamento eficiente: O Prometheus usa uma abordagem de armazenamento baseada em séries temporais, o que o torna eficiente em termos de espaço de armazenamento e tempo de recuperação de dados. Ele retém amostras em um formato compacto por um período de tempo configurável, o que o torna adequado para coletar dados de longo prazo. Isso significa que você pode acompanhar o histórico de métricas e analisar tendências ao longo do tempo.
 
    4 -  Ecossistema e integração: O Prometheus possui um ecossistema robusto de ferramentas e integrações que o tornam uma escolha popular para observabilidade. Ele pode ser facilmente integrado a outras ferramentas de monitoramento e alerta, como Grafana, Alertmanager e diversas bibliotecas de instrumentação. Além disso, existem bibliotecas cliente disponíveis para várias linguagens de programação, facilitando a instrumentação de seus aplicativos.
