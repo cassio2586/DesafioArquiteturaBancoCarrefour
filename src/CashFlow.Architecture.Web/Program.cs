@@ -8,6 +8,8 @@ using CashFlow.Architecture.Web;
 using FastEndpoints;
 using FastEndpoints.Swagger.Swashbuckle;
 using FastEndpoints.ApiExplorer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -27,6 +29,16 @@ string? connectionString = builder.Configuration.GetConnectionString("SqliteConn
 
 builder.Services.AddDbContext(connectionString!);
 
+builder.Services.AddAuthentication(options =>
+{
+  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+  options.Authority = "https://dev-6ulrhvk0832np57a.us.auth0.com/";
+  options.Audience = "localhost";
+});
+
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
 builder.Services.AddFastEndpoints();
@@ -43,6 +55,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.Configure<ServiceConfig>(config =>
 {
   config.Services = new List<ServiceDescriptor>(builder.Services);
+  
 
   // optional - default path to view services is /listallservices - recommended to choose your own path
   config.Path = "/listservices";
@@ -71,7 +84,7 @@ else
 }
 app.UseRouting();
 app.UseFastEndpoints();
-
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCookiePolicy();

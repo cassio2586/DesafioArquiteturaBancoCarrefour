@@ -3,8 +3,10 @@ using CashFlow.Architecture.Web.Endpoints.CashEndpoints;
 using CashFlow.Architecture.Core.Interfaces;
 using CashFlow.Architecture.SharedKernel.CustomExceptions;
 using FastEndpoints;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CashFlow.Architecture.Web.CashEndpoints;
+
 
 public class GetCashFlowReportDay : Endpoint<GetCashFlowReportDayRequest, GetCashFlowReportDayResponse>
 {
