@@ -1,10 +1,14 @@
-﻿using Ardalis.ListStartupServices;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Ardalis.ListStartupServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CashFlow.Architecture.Core;
 using CashFlow.Architecture.Infrastructure;
 using CashFlow.Architecture.Infrastructure.Data;
 using CashFlow.Architecture.Web;
+using CashFlow.Architecture.Web.ViewModels;
 using FastEndpoints;
 using FastEndpoints.Swagger.Swashbuckle;
 using FastEndpoints.ApiExplorer;
@@ -12,6 +16,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Serilog;
+
+ using FastEndpoints.Security;
+using Microsoft.ApplicationInsights;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +34,12 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
   options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
+//builder.Services.AddIdentityServices(builder.Configuration);
+
 string? connectionString = builder.Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext(connectionString!);
-
+/*
 builder.Services.AddAuthentication(options =>
 {
   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -37,7 +48,7 @@ builder.Services.AddAuthentication(options =>
 {
   options.Authority = "https://dev-6ulrhvk0832np57a.us.auth0.com/";
   options.Audience = "localhost";
-});
+});*/
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
@@ -60,7 +71,26 @@ builder.Services.Configure<ServiceConfig>(config =>
   // optional - default path to view services is /listallservices - recommended to choose your own path
   config.Path = "/listservices";
 });
-
+//builder.Services.AddJWTBearerAuth("TokenSigningKey"); 
+builder.Services.AddAuthentication(options =>
+{
+  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+  options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+  o.TokenValidationParameters = new TokenValidationParameters
+  {
+    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+    ValidAudience = builder.Configuration["Jwt:Audience"],
+    IssuerSigningKey = new SymmetricSecurityKey
+      (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException())),
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = false,
+    ValidateIssuerSigningKey = true
+  };
+});
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
@@ -68,7 +98,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
   containerBuilder.RegisterModule(new DefaultInfrastructureModule(builder.Environment.EnvironmentName == "Development"));
 });
 
-//builder.Logging.AddAzureWebAppDiagnostics(); add this if deploying to Azure
 
 var app = builder.Build();
 
@@ -85,6 +114,44 @@ else
 app.UseRouting();
 app.UseFastEndpoints();
 app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseHttpsRedirection();
+app.MapGet("/security/getMessage", () => "Hello World!").RequireAuthorization();
+app.MapPost("/security/createToken",
+  [AllowAnonymous] (User user) =>
+  {
+    if (user.UserName == "teste" && user.Password == "teste123")
+    {
+      var issuer = builder.Configuration["Jwt:Issuer"];
+      var audience = builder.Configuration["Jwt:Audience"];
+      var key = Encoding.ASCII.GetBytes
+        (builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException());
+      var tokenDescriptor = new SecurityTokenDescriptor
+      {
+        Subject = new ClaimsIdentity(new[]
+        {
+          new Claim("Id", Guid.NewGuid().ToString()),
+          new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+          new Claim(JwtRegisteredClaimNames.Email, user.UserName),
+          new Claim(JwtRegisteredClaimNames.Jti,
+            Guid.NewGuid().ToString())
+        }),
+        Expires = DateTime.UtcNow.AddMinutes(5),
+        Issuer = issuer,
+        Audience = audience,
+        SigningCredentials = new SigningCredentials
+        (new SymmetricSecurityKey(key),
+          SecurityAlgorithms.HmacSha512Signature)
+      };
+      var tokenHandler = new JwtSecurityTokenHandler();
+      var token = tokenHandler.CreateToken(tokenDescriptor);
+      var jwtToken = tokenHandler.WriteToken(token);
+      var stringToken = tokenHandler.WriteToken(token);
+      return Results.Ok(stringToken);
+    }
+    return Results.Unauthorized();
+  });
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCookiePolicy();

@@ -21,7 +21,6 @@ public class Create : Endpoint<CreateCashRequest>
     public override void Configure()
     {
         Post(CreateCashRequest.Route);
-        AllowAnonymous();
         Options(x => x
             .WithTags("CashEndpoints"));
     }

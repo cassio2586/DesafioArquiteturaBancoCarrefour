@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CashFlow.Architecture.Web.CashEndpoints;
 
-
+[Authorize]
 public class GetCashFlowReportDay : Endpoint<GetCashFlowReportDayRequest, GetCashFlowReportDayResponse>
 {
     private readonly IGetCashFlowDayReportService _getCashFlowDayReportService;
@@ -22,7 +22,7 @@ public class GetCashFlowReportDay : Endpoint<GetCashFlowReportDayRequest, GetCas
     public override void Configure()
     {
         Get(GetCashFlowReportDayRequest.Route);
-        AllowAnonymous();
+        
         Options(x => x
             .WithTags("CashEndpoints"));
     }
