@@ -7,7 +7,7 @@ namespace CashFlow.Architecture.Core.CashAggregate;
 
 public class Cash : EntityBase, IAggregateRoot
 {
-  public string Description { get; private set; }
+  public string Description { get; set; }
   public decimal Amount { get; set; }
   public TransactionTypeEnum TransactionType { get; private set; }
   public DateTime DateTimeTransaction { get; set; }
@@ -17,5 +17,10 @@ public class Cash : EntityBase, IAggregateRoot
     Amount = Guard.Against.NegativeOrZero(amount, nameof(amount));
     TransactionType = transactionType;
     DateTimeTransaction = dateTimeTransaction;
+  }
+  
+  public Cash(string description)
+  {
+    Description = description;
   }
 }

@@ -1,6 +1,5 @@
 ﻿using CashFlow.Architecture.Core.CashAggregate;
 using CashFlow.Architecture.Core.CashAggregate.Enums;
-using Clean.Architecture.Core.ContributorAggregate;
 using Xunit;
 
 namespace Clean.Architecture.UnitTests.Core.ContributorAggregate;

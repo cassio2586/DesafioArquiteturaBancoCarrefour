@@ -13,13 +13,19 @@ public class CreateCashService : ICreateCashService
 {
   private readonly IRepository<Cash> _repository;
   private readonly IMediator _mediator;
-  private readonly ILogger<CreateCashService> _logger;
+  private readonly ILogger<CreateCashService> _logger = null!;
 
   public CreateCashService(IRepository<Cash> repository, IMediator mediator, ILogger<CreateCashService> logger)
   {
     _repository = repository;
     _mediator = mediator;
     _logger = logger;
+  }
+  
+  public CreateCashService(IRepository<Cash> repository, IMediator mediator)
+  {
+    _repository = repository;
+    _mediator = mediator;
   }
   public async Task<Result> Add(string description, decimal amount, TransactionTypeEnum transactionType, DateTime dateTimeTransaction)
   {
