@@ -6,6 +6,7 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Clean.Architecture.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

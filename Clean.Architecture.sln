@@ -29,7 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{67
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{C526419F-2C0D-4C4F-9B63-C4B5B7496A31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clean.Architecture.UnitTests", "tests\Clean.Architecture.UnitTests\Clean.Architecture.UnitTests.csproj", "{6E83D385-35AD-45D8-A840-76BA83F6F9F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Architecture.UnitTests", "tests\CashFlow.Architecture.UnitTests\CashFlow.Architecture.UnitTests.csproj", "{6E83D385-35AD-45D8-A840-76BA83F6F9F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{21661F48-E9BB-43E5-9E09-0FB06C68580B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,6 +116,7 @@ Global
 		{67B62497-5822-45CD-8233-28529EBA552D} = {106AE906-5075-410A-B941-912F811848EE}
 		{1BAF09BC-5E95-44A5-BB02-D3AC71AD06ED} = {67B62497-5822-45CD-8233-28529EBA552D}
 		{C526419F-2C0D-4C4F-9B63-C4B5B7496A31} = {106AE906-5075-410A-B941-912F811848EE}
+		{6E83D385-35AD-45D8-A840-76BA83F6F9F0} = {21661F48-E9BB-43E5-9E09-0FB06C68580B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0F19343-8185-4A9F-9165-0EA8544BC925}
